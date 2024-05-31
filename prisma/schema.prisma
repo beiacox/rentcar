@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model alquiler {
+  id               Int        @id @default(autoincrement())
+  cantidad         Int
+  tipo_precio      Int        @default(0)
+  monto            Decimal    @db.Decimal(10, 2)
+  abono            Decimal    @db.Decimal(10, 2)
+  fecha_prestamo   DateTime   @db.DateTime(0)
+  fecha_devolucion DateTime   @db.DateTime(0)
+  observacion      String?    @db.Text
+  estado           Int        @default(1)
+  id_cliente       Int
+  id_vehiculo      Int
+  id_doc           Int
+  vehiculos        vehiculos  @relation(fields: [id_vehiculo], references: [id], onDelete: Cascade, map: "alquiler_ibfk_1")
+  clientes         clientes   @relation(fields: [id_cliente], references: [id], onDelete: Cascade, map: "alquiler_ibfk_2")
+  documentos       documentos @relation(fields: [id_doc], references: [id], onDelete: Cascade, map: "alquiler_ibfk_3")
+
+  @@index([id_cliente], map: "id_cliente")
+  @@index([id_doc], map: "id_doc")
+  @@index([id_vehiculo], map: "id_vehiculo")
+}
+
+model clientes {
+  id        Int        @id @default(autoincrement())
+  cedula    String?    @db.VarChar(10)
+  nombre    String     @db.VarChar(100)
+  correo    String?    @db.VarChar(100)
+  telefono  String     @db.VarChar(20)
+  direccion String     @db.Text
+  clave     String?    @db.VarChar(150)
+  fecha     DateTime   @default(now()) @db.Timestamp(0)
+  estado    Int        @default(1)
+  alquiler  alquiler[]
+  reservas  reservas[]
+}
+
+model configuracion {
+  id        Int    @id @default(autoincrement())
+  ruc       String @db.VarChar(20)
+  nombre    String @db.VarChar(200)
+  telefono  String @db.VarChar(15)
+  correo    String @db.VarChar(100)
+  direccion String @db.VarChar(200)
+  mensaje   String @db.Text
+  logo      String @db.VarChar(10)
+}
+
+model credenciales {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique(map: "User_email_key")
+  username  String   @unique(map: "User_username_key")
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model documentos {
+  id        Int        @id @default(autoincrement())
+  documento String     @db.VarChar(20)
+  estado    Int        @default(1)
+  fecha     DateTime   @default(now()) @db.Timestamp(0)
+  alquiler  alquiler[]
+}
+
+model marcas {
+  id        Int         @id @default(autoincrement())
+  marca     String      @db.VarChar(50)
+  estado    Int         @default(1)
+  fecha     DateTime    @default(now()) @db.Timestamp(0)
+  vehiculos vehiculos[]
+}
+
+model reservas {
+  id          Int       @id @default(autoincrement())
+  f_recogida  DateTime  @db.DateTime(0)
+  f_entrega   DateTime  @db.DateTime(0)
+  cantidad    Int       @default(0)
+  tipo_precio Int       @default(1)
+  monto       Decimal   @default(0.00) @db.Decimal(10, 2)
+  f_reserva   DateTime  @db.DateTime(0)
+  observacion String?   @db.Text
+  estado      Int       @default(0)
+  id_vehiculo Int
+  id_cliente  Int
+  vehiculos   vehiculos @relation(fields: [id_vehiculo], references: [id], onDelete: Cascade, map: "reservas_ibfk_1")
+  clientes    clientes  @relation(fields: [id_cliente], references: [id], onDelete: Cascade, map: "reservas_ibfk_2")
+
+  @@index([id_cliente], map: "id_cliente")
+  @@index([id_vehiculo], map: "id_vehiculo")
+}
+
+model tipos {
+  id        Int         @id @default(autoincrement())
+  tipo      String      @db.VarChar(50)
+  estado    Int         @default(1)
+  fecha     DateTime    @default(now()) @db.Timestamp(0)
+  vehiculos vehiculos[]
+}
+
+model usuarios {
+  id        Int      @id @default(autoincrement())
+  usuario   String   @db.VarChar(20)
+  nombre    String   @db.VarChar(100)
+  apellido  String?  @db.VarChar(100)
+  correo    String   @db.VarChar(80)
+  telefono  String?  @db.VarChar(20)
+  direccion String?  @db.VarChar(100)
+  perfil    String   @default("avatar.svg") @db.VarChar(50)
+  clave     String   @db.VarChar(150)
+  fecha     DateTime @default(now()) @db.Timestamp(0)
+  estado    Int      @default(1)
+}
+
+model vehiculos {
+  id          Int        @id @default(autoincrement())
+  placa       String     @db.VarChar(50)
+  precio_hora Decimal    @default(0.00) @db.Decimal(10, 2)
+  precio_dia  Decimal    @default(0.00) @db.Decimal(10, 2)
+  precio_mes  Decimal    @default(0.00) @db.Decimal(10, 2)
+  modelo      String     @db.VarChar(50)
+  kilometraje String     @db.VarChar(50)
+  transmision String     @db.VarChar(50)
+  asientos    Int        @default(0)
+  equipaje    String     @db.VarChar(50)
+  combustible String     @db.VarChar(50)
+  foto        String     @db.VarChar(50)
+  estado      Int        @default(1)
+  fecha       DateTime   @default(now()) @db.Timestamp(0)
+  id_tipo     Int
+  id_marca    Int
+  alquiler    alquiler[]
+  reservas    reservas[]
+  tipos       tipos      @relation(fields: [id_tipo], references: [id], onDelete: Cascade, map: "vehiculos_ibfk_1")
+  marcas      marcas     @relation(fields: [id_marca], references: [id], onDelete: Cascade, map: "vehiculos_ibfk_2")
+
+  @@index([id_marca], map: "id_marca")
+  @@index([id_tipo], map: "id_tipo")
+}
