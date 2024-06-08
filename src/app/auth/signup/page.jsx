@@ -24,7 +24,6 @@ export default function SignupPage() {
             }
         })
         const resData = await res.json();
-        console.log(resData);
         if(res.ok){
             router.push("/auth/login")
         }
