@@ -5,14 +5,12 @@ import bcrypt from 'bcrypt'
 export async function POST(req) {
     try {
         const data = await req.json();
-        console.log(data);
 
         const emailFound = await db.credenciales.findUnique({
             where: {
                 email: data.email
             }
         })
-        console.log(emailFound)
 
         if (!!emailFound) {
             return NextResponse.json({ message: "Email already exists" }, {
