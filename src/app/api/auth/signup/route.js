@@ -8,7 +8,7 @@ export async function POST(req) {
 
         const emailFound = await db.credenciales.findUnique({
             where: {
-                email: data.email
+                correo: data.correo
             }
         })
 
@@ -20,28 +20,39 @@ export async function POST(req) {
 
         const usernameFound = await db.credenciales.findUnique({
             where: {
-                username: data.username
+                usuario: data.usuario
             }
         })
 
         if (!!usernameFound) {
-            return NextResponse.json({ message: "Username already exists"}, {
+            return NextResponse.json({ message: "Username already exists" }, {
                 status: 400
             })
         }
 
-        const hashedPass = await bcrypt.hash(data.password, 10);
+        const hashedPass = await bcrypt.hash(data.clave, 10);
+        const newClient = await db.clientes.create({
+            data: {
+                nombre: data.nombre,
+                telefono: data.telefono,
+                direccion: data.direccion,
+                fecha: new Date(),
+                estado: 1,
+                cedula: '',
+            }
+        })
         const newUSer = await db.credenciales.create({
             data: {
-                username: data.username,
-                email: data.email,
-                password: hashedPass
+                usuario: data.usuario,
+                correo: data.correo,
+                clave: hashedPass,
+                id_cliente: newClient.id
             }
         })
 
-        const { password: _, ...user } = newUSer;
+        const { clave: _, id_cliente: _1,  ...user } = newUSer;
 
-        return NextResponse.json(user)
+        return NextResponse.json(newUSer)
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 500 })
     }
