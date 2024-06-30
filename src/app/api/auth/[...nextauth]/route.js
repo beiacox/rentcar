@@ -14,22 +14,23 @@ const AuthOptions = {
             async authorize(credentials, req) {
                 const UserFound = await db.credenciales.findUnique({
                     where: {
-                        email: credentials.email
+                        correo: credentials.email
                     }
                 })
                 if (!UserFound) throw new Error('No user found')
 
                 console.log(UserFound)
+
                 const matchPassword = await bcrypt.compare(credentials.password,
-                    UserFound.password
+                    UserFound.clave
                 )
 
                 if(!matchPassword) throw new Error('Wrong password')
 
                 return {
                     id: UserFound.id,
-                    name: UserFound.username,
-                    email: UserFound.email,
+                    name: UserFound.usuario,
+                    email: UserFound.correo,
 
                 }
             }
