@@ -56,7 +56,7 @@ const Login = () => {
                     <button type="submit" className="login-button">Login</button>
                 </form>
                 <a href="#" className="forgot-password">Forgot Password?</a>
-                <a href="#" className="register">Don&apos;t have an account? Register</a>
+                <a onClick={() => router.push('/auth/signup')} className="register">Don&apos;t have an account? Register</a>
             </div>
         </div>
     );
