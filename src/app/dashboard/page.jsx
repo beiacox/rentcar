@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import './styles.css'
+import Link from 'next/link';
 
 export default function About() {
     const canvasMesRef = useRef(null);
@@ -89,19 +90,19 @@ export default function About() {
                         <i class="fas fa-user"></i>
                         <h2>Usuarios</h2>
                         <div class="badge">1</div>
-                        <a href="#">Ver detalle</a>
+                        <Link href="/dashboard/users">Ver detalle</Link>
                     </div>
                     <div class="card card-clientes">
                         <i class="fas fa-users"></i>
                         <h2>Clientes</h2>
                         <div class="badge">1</div>
-                        <a href="#">Ver detalle</a>
+                        <Link href="/dashboard/customers">Ver detalle</Link>
                     </div>
                     <div class="card card-vehiculos">
                         <i class="fas fa-car"></i>
                         <h2>Vehículos</h2>
                         <div class="badge">0</div>
-                        <a href="#">Ver detalle</a>
+                        <Link href="/dashboard/vehicles">Ver detalle</Link>
                     </div>
                     <div class="card card-tipos">
                         <i class="fas fa-tags"></i>
