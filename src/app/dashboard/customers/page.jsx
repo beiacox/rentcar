@@ -1,14 +1,9 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import '../styles.css'
 
 export default function Customers() {
-    const datos = [
-        { name: 'John Doe', age: 28, email: 'john@example.com' },
-        { name: 'Jane Smith', age: 34, email: 'jane@example.com' },
-        { name: 'Sam Green', age: 23, email: 'sam@example.com' },
-        // Añade más datos según sea necesario
-    ];
 
     const [data, setData] = useState({}); // Estado para almacenar los datos
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
@@ -23,9 +18,6 @@ export default function Customers() {
     
     }, [])
     
-
-    let customers = fetch("http://localhost:3000/api/customers").then(d => d.json());
-
     const router = useRouter();
 
     const handleBack = () => {

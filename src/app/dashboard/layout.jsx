@@ -1,3 +1,4 @@
+import Head from "next/head";
 
 
 export const metadata = {
@@ -7,6 +8,25 @@ export const metadata = {
 
 export default function DashboardLayout({ children }) {
     return (
-        <div>{children}</div>
+        <>
+            <Head>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+            </Head>
+            
+            <div className="nav">
+                <div className="menu">
+                    <button id="reservas-btn">Reservas</button>
+                    <button id="estadisticas-btn">Estadísticas</button>
+                    <button id="clientes-btn">Clientes</button>
+                </div>
+                <div className="profile">
+                    <i className="fas fa-bell" id="campana-btn"></i>
+                    <i className="fas fa-user"></i>
+                    <span>user</span>
+                </div>
+            </div>
+            <div>{children}</div>
+            <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        </>
     );
 }

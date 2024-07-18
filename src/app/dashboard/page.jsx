@@ -70,18 +70,6 @@ export default function About() {
 
     return (
         <div>
-            <div class="nav">
-                <div class="menu">
-                    <button id="reservas-btn" onClick={() => alert("reservas")}>Reservas</button>
-                    <button id="estadisticas-btn" onClick={() => alert("Estadísticas")}>Estadísticas</button>
-                    <button id="clientes-btn" onClick={() => alert("Clientes")}>Clientes</button>
-                </div>
-                <div class="profile">
-                    <i class="fas fa-bell" id="campana-btn" onClick={() => alert("Notificaciones")}></i>
-                    <i class="fas fa-user"></i>
-                    <span>user</span>
-                </div>
-            </div>
             <div class="container">
                 <h1>Panel de Administración</h1>
                 <p>Reportes.</p>
