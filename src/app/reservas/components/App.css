@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/yopo.jpg');
+     /* Ruta correcta a la imagen en public/images */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: rgba(49, 47, 47, 0.8); /* Fondo blanco semitransparente */
+    padding: 10px 20px;
+    border-bottom: 1px solid #2b9103;
+    width: 100%;
+}
+
+.logo {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f7f4f4;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo blanco semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+}

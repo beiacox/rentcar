@@ -99,14 +99,6 @@ model reservas {
   @@index([id_vehiculo], map: "id_vehiculo")
 }
 
-model tipos {
-  id        Int         @id @default(autoincrement())
-  tipo      String      @db.VarChar(50)
-  estado    Int         @default(1)
-  fecha     DateTime    @default(now()) @db.Timestamp(0)
-  vehiculos vehiculos[]
-}
-
 model usuarios {
   id        Int      @id @default(autoincrement())
   usuario   String   @db.VarChar(20)
@@ -136,13 +128,11 @@ model vehiculos {
   foto        String     @db.VarChar(50)
   estado      Int        @default(1)
   fecha       DateTime   @default(now()) @db.Timestamp(0)
-  id_tipo     Int
+  tipo        String
   id_marca    Int
   alquiler    alquiler[]
   reservas    reservas[]
-  tipos       tipos      @relation(fields: [id_tipo], references: [id], onDelete: Cascade, map: "vehiculos_ibfk_1")
   marcas      marcas     @relation(fields: [id_marca], references: [id], onDelete: Cascade, map: "vehiculos_ibfk_2")
 
   @@index([id_marca], map: "id_marca")
-  @@index([id_tipo], map: "id_tipo")
 }
