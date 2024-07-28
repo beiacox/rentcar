@@ -24,58 +24,69 @@ const ReservationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Entrega</label>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Entrega</label>
         <input
           type="text"
           value={pickupLocation}
           onChange={(e) => setPickupLocation(e.target.value)}
           placeholder="Santo Domingo (SDQ - A. Internacional Las Américas)"
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div>
-        <label>Devolución</label>
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Devolución</label>
         <input
           type="text"
           value={returnLocation}
           onChange={(e) => setReturnLocation(e.target.value)}
           placeholder="Santo Domingo (SDQ - A. Internacional Las Américas)"
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div>
-        <label>Fecha de entrega</label>
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Fecha de entrega</label>
         <input
           type="date"
           value={pickupDate}
           onChange={(e) => setPickupDate(e.target.value)}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div>
-        <label>Fecha de devolución</label>
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Fecha de devolución</label>
         <input
           type="date"
           value={returnDate}
           onChange={(e) => setReturnDate(e.target.value)}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div>
-        <label>Hora de entrega</label>
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Hora de entrega</label>
         <input
           type="time"
           value={pickupTime}
           onChange={(e) => setPickupTime(e.target.value)}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div>
-        <label>Hora de devolución</label>
+      <div className="flex flex-col">
+        <label className="mb-2 font-semibold text-gray-700">Hora de devolución</label>
         <input
           type="time"
           value={returnTime}
           onChange={(e) => setReturnTime(e.target.value)}
+          className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <button type="submit">Buscar</button>
+      <button
+        type="submit"
+        className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      >
+        Reservar
+      </button>
     </form>
   );
 };

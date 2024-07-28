@@ -1,16 +1,15 @@
 "use client"
 import { signOut } from "next-auth/react";
 import Image from "next/image";
-import './App.css';
-import icon from './assets/icon.png'; 
 
-function App() {
+
+const App = () => {
   return (
     <div>
       <header>
         <nav>
           <div className="logo">
-            <Image src={icon} alt="Logo" className="logo-icon" />
+            <img src={"/icon.png"} alt="Logo" className="logo-icon"/>
             RENT<span>CAR</span>
           </div>
           <ul>
@@ -29,7 +28,7 @@ function App() {
           <p className="HeroP">
             Explora el mundo con estilo y comodidad. Te ofrecemos una amplia gama de vehículos de alta calidad para satisfacer todas tus necesidades de transporte.
           </p>
-    <button className="bg-slate-50 p-3 rounded text-blue-700" onClick={() => signOut()}>Logout</button>
+          <button className="bg-slate-50 p-3 rounded text-blue-700" onClick={() => signOut()}>Logout</button>
           <button>¡Reserva ahora y comienza tu viaje con RentCar Deluxe!</button>
         </div>
       </section>
