@@ -3,8 +3,9 @@
 import { useEffect, useRef } from 'react';
 import './styles.css'
 import Link from 'next/link';
+import withAuth from '@/lib/auth'
 
-export default function About() {
+function About() {
     const canvasMesRef = useRef(null);
     const canvasSemanaRef = useRef(null);
 
@@ -113,3 +114,5 @@ export default function About() {
         </div>
     )
 }
+
+export default withAuth(About)
