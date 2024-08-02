@@ -1,10 +1,11 @@
 // src/components/ReservationForm.js
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import "./ReservationForm.css"; // Asegúrate de crear este archivo para estilos
 import CarItem from "./CarItem";
 import CarList from "./CarList";
 
-const ReservationForm = () => {
+const ReservationForm = ({carId, userId}) => {
+  console.log({carId, userId})
   const [pickupLocation, setPickupLocation] = useState("");
   const [returnLocation, setReturnLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
@@ -21,7 +22,7 @@ const ReservationForm = () => {
     const reservationData = {
       pickupLocation,
       returnLocation,
-      pickupDate,
+      pickupDate: Date.parse(pickupDate),
       returnDate,
       pickupTime,
       returnTime,

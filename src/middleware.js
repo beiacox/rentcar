@@ -1,5 +1,5 @@
 export {default} from 'next-auth/middleware';
 
 export const config = {
-    matcher: ['/', '/prueba2']
+    matcher: ['/reservas', '/dashboard']
 }

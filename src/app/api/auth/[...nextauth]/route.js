@@ -43,12 +43,14 @@ const AuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.role = user.role; // Agrega el rol al token
+                token.id = user.id;
             }
             return token;
         },
 
         async session({ session, token }) {
             session.user.role = token.role; // Agrega el rol a la sesión
+            session.user.id = token.id;
             return session;
         }
     }}

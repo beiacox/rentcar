@@ -3,12 +3,16 @@ import Link from 'next/link';
 import ReservationForm from '../components/ReservationForm';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 const ReservationPage = ({ params }) => {
     const carId = params.carId[1];
 
     const [vehicleInfo, setVehicleInfo] = useState({}); // Estado para almacenar los datos
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
+    
+    const {data: session, status} = useSession();
+    const userId = session?.user.id;
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/vehicles/${carId}`)
@@ -45,7 +49,7 @@ const ReservationPage = ({ params }) => {
                         </div>
                     </div>
                     <div className="bg-white shadow-md rounded-lg p-6">
-                        <ReservationForm />
+                        <ReservationForm carId={vehicleInfo.id} userId ={userId}/>
                     </div>
                 </>
             )}
