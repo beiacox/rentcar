@@ -25,22 +25,33 @@ const AuthOptions = {
                     UserFound.clave
                 )
 
-                if(!matchPassword) throw new Error('Wrong password')
-
+                if (!matchPassword) throw new Error('Wrong password')
                 return {
                     id: UserFound.id,
                     name: UserFound.usuario,
                     email: UserFound.correo,
-
+                    role: UserFound.role
                 }
             }
         })
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/auth/login",
     },
-    secret: process.env.NEXTAUTH_SECRET,
-}
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.role = user.role; // Agrega el rol al token
+            }
+            return token;
+        },
+
+        async session({ session, token }) {
+            session.user.role = token.role; // Agrega el rol a la sesión
+            return session;
+        }
+    }}
 const handler = NextAuth(AuthOptions);
 
 export { handler as GET, handler as POST }

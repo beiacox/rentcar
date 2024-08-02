@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/login/page.jsx", "src/lib/db.js", "src/app/auth/signup/page.jsx", "src/app/page.jsx", "src/app/layout.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/login/page.jsx", "src/lib/db.js", "src/app/auth/signup/page.jsx", "src/app/page.jsx", "src/app/layout.jsx", "src/middleware.js"],
   "exclude": ["node_modules"]
 }

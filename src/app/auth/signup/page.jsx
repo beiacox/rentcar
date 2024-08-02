@@ -19,10 +19,11 @@ export default function SignupPage() {
         usuario: data.username,
         correo: data.email,
         clave: data.password,
-        nombre:data.name, 
-        telefono:data.tel, 
-        direccion:data.address,
-        cedula:data.cedula, 
+        nombre: data.name,
+        telefono: data.tel,
+        direccion: data.address,
+        cedula: data.cedula,
+        role: data.role,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -139,6 +140,19 @@ export default function SignupPage() {
               {errors.confirmPassword && (<span className="text-red-500">{errors.confirmPassword.message}</span>)}
 
             </div>
+            <div className="form-group mb-3">
+              <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">Role</label>
+              <select
+                {...register("role", { required: { value: true, message: "Role is required" } })}
+                id="role"
+                className="form-control block w-full pl-3 pr-10 py-2 bg-gray-700 text-gray-300 border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                required>
+                <option value="CUSTOMER">Customer</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+              {errors.role && (<span className="text-red-500">{errors.role.message}</span>)}
+            </div>
+
             <button type="submit" className="btnRegistro">
               Registrarse
             </button>
