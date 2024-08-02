@@ -53,11 +53,17 @@ model configuracion {
   logo      String @db.VarChar(10)
 }
 
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
 model credenciales {
   id         Int       @id @default(autoincrement())
   correo      String    @unique(map: "User_email_key")
   usuario   String    @unique(map: "User_username_key")
   clave   String
+  role    Role      @default(CUSTOMER)
   creado  DateTime  @default(now())
   actualizado  DateTime  @updatedAt
   id_cliente Int?      @unique(map: "id_cliente")

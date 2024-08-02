@@ -46,6 +46,7 @@ export async function POST(req) {
                 usuario: data.usuario,
                 correo: data.correo,
                 clave: hashedPass,
+                role: data.role,
                 id_cliente: newClient.id
             }
         })
