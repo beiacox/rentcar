@@ -21,7 +21,7 @@ const CarList = () => {
         <section className="car-list">
             {/* {cars.map(car => (
                 <CarItem key={car.name} car={car} />
-            ))} */}
+            ))} */}z
             {!loading && data.vehicles.map(car => (
                 <CarItem key={car.id} car={car} />
             ))

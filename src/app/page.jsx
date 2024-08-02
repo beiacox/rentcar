@@ -16,7 +16,7 @@ const App = () => {
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Servicios</a></li>
             <li><a href="#">Precios</a></li>
-            <li><a href="#">Vehículos</a></li>
+            <li><a href="reservas">Vehículos</a></li>
             <li><a href="#">Contactos</a></li>
             <li><a href="#">Login</a></li>
           </ul>
