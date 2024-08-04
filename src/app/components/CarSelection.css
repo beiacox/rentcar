@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../assets/yopo.jpg'); /* Añade la imagen de fondo */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.car-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding-top: 100px; /* Añadir espacio para evitar superposición con la barra de navegación */
+}
+
+.car-selection-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #1b1a1a;
+    background-color: rgba(241, 237, 237, 0.7); /* Añadir fondo blanco con transparencia */
+    padding:8px 20px;
+    border-radius: 5px;
+}
+
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.car-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Añadir fondo blanco con transparencia */
+    transition: transform 0.2s ease-in-out; /* Transición para resaltar los autos */
+}
+
+.car-item:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del auto al pasar el cursor */
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.car-details {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.car-details h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.car-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.select-car-button {
+    margin-top: auto; /* Empuja el botón hacia abajo */
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.select-car-button:hover {
+    background-color: #218838;
+}

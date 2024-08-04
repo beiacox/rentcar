@@ -1,0 +1,49 @@
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    background-image: url('../assets/yopo.jpg'); /* Añade la imagen de fondo */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.confirmation-card {
+    background: rgba(221, 212, 212, 0.726); /* Un poco transparencia para ver fondo */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.checkmark {
+    color: green;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.confirmation-card h1 {
+    font-size: 24px;
+    color: #171816;
+}
+
+.confirmation-card p {
+    color: #080606;
+    margin-bottom: 20px;
+}
+
+.confirmation-card button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #006304;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirmation-card button:hover {
+    background-color: #03740aef;
+}
