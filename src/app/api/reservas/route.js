@@ -5,15 +5,14 @@ import bcrypt from "bcrypt";
 export async function POST(req) {
   try {
     const data = await req.json();
-    console.log(req);
+    console.log(data);
 
     const CarFound = await db.reservas.findUnique({
       where: {
         vehiculoId: data.vehiculoId,
-      },
-      
+      }  
     });
-    
+
     if (!!CarFound) {
       return NextResponse.json(
         { message: "el auto ya esta alquilado" },
@@ -25,11 +24,11 @@ export async function POST(req) {
 
     
 
-    const hashedPass = await bcrypt.hash(data.vehiculoId, 10);
+    // const hashedPass = await bcrypt.hash(data.vehiculoId, 10);
     const newReserva = await db.reservas.create({
       data: {
         pickupLocation: data.pickupLocation,
-        returnLocation: data.returnLocatio,
+        returnLocation: data.returnLocation,
         pickupDate: data.pickupDate,
         returnDate: data.returnDate,
         pickupTime: data.pickupTime,
@@ -41,7 +40,7 @@ export async function POST(req) {
     });
     
 
-    const { clave: _, clienteId: _1, ...user } = newReserva;
+    // const { clave: _, clienteId: _1, ...user } = newReserva;
 
     return NextResponse.json(newReserva);
   } catch (error) {

@@ -1,11 +1,8 @@
-// src/components/ReservationForm.js
-import React, { useId, useState } from "react";
+"use client"
+import { useState } from "react";
 import "./ReservationForm.css"; // Asegúrate de crear este archivo para estilos
-import CarItem from "./CarItem";
-import CarList from "./CarList";
 
 const ReservationForm = ({carId, userId}) => {
-  console.log({carId, userId})
   const [pickupLocation, setPickupLocation] = useState("");
   const [returnLocation, setReturnLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
@@ -15,6 +12,7 @@ const ReservationForm = ({carId, userId}) => {
   const [vehiculoId, setIdVehiculo] = useState("");
   const [clienteId, setIdCliente] = useState("");
   const [observacion, setObservacion] = useState("");
+  console.log({carId, userId})
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,21 +31,13 @@ const ReservationForm = ({carId, userId}) => {
 
     const res = await fetch("/api/reservas", {
       method: "POST",
-      body: JSON.stringify({
-        pickupLocation,
-        returnLocation,
-        pickupDate,
-        returnDate,
-        pickupTime,
-        returnTime,
-        vehiculoId,
-        clienteId,
-        observacion,
-      }),
+      body: JSON.stringify(reservationData),
       headers:{
         'Content-Type': 'application/json'
       }
     });
+
+    console.log(await res.json())
 
     
   };
