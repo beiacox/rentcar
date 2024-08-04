@@ -12,8 +12,8 @@ const ReservationForm = ({carId, userId}) => {
   const [returnDate, setReturnDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [returnTime, setReturnTime] = useState("");
-  const [idVehiculo, setIdVehiculo] = useState("");
-  const [idCliente, setIdCliente] = useState("");
+  const [vehiculoId, setIdVehiculo] = useState("");
+  const [clienteId, setIdCliente] = useState("");
   const [observacion, setObservacion] = useState("");
 
   const handleSubmit = async (e) => {
@@ -22,49 +22,34 @@ const ReservationForm = ({carId, userId}) => {
     const reservationData = {
       pickupLocation,
       returnLocation,
-      pickupDate: Date.parse(pickupDate),
+      pickupDate, //Date.parse(pickupDate),
       returnDate,
       pickupTime,
       returnTime,
-      id_vehiculo: parseInt(idVehiculo),
-      id_cliente: parseInt(idCliente),
+      vehiculoId: parseInt(carId),
+      clienteId: parseInt(userId),
       observacion,
     };
 
-    console.log("Datos a enviar:", reservationData);
-
-    try {
-      const response = await fetch("/api/reservas", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reservationData),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Reserva creada exitosamente:", result);
-        // Limpiar el formulario
-        setPickupLocation("");
-        setReturnLocation("");
-        setPickupDate("");
-        setReturnDate("");
-        setPickupTime("");
-        setReturnTime("");
-        setIdVehiculo("");
-        setIdCliente("");
-        setObservacion("");
-        alert("Reserva creada exitosamente");
-      } else {
-        const errorData = await response.json();
-        console.error("Error al crear la reserva:", errorData);
-        alert(`Error al crear la reserva: ${errorData.error}`);
+    const res = await fetch("/api/reservas", {
+      method: "POST",
+      body: JSON.stringify({
+        pickupLocation,
+        returnLocation,
+        pickupDate,
+        returnDate,
+        pickupTime,
+        returnTime,
+        vehiculoId,
+        clienteId,
+        observacion,
+      }),
+      headers:{
+        'Content-Type': 'application/json'
       }
-    } catch (error) {
-      console.error("Error al crear la reserva:", error);
-      alert(`Error al crear la reserva: ${error.message}`);
-    }
+    });
+
+    
   };
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -136,8 +121,8 @@ const ReservationForm = ({carId, userId}) => {
         <label className="mb-2 font-semibold text-gray-700">Vehículo</label>
         <input
           type="text"
-          value={idVehiculo}
-          onChange={(e) => setIdVehiculo(e.target.value)}
+          value={vehiculoId}
+          onChange={(e) => setIdVehiculo(carId)}
           placeholder="ID del vehículo"
           className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
@@ -146,8 +131,8 @@ const ReservationForm = ({carId, userId}) => {
         <label className="mb-2 font-semibold text-gray-700">Cliente</label>
         <input
           type="text"
-          value={idCliente}
-          onChange={(e) => setIdCliente(e.target.value)}
+          value={clienteId}
+          onChange={(e) => setIdCliente(userId)}
           placeholder="ID del cliente"
           className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />

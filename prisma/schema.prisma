@@ -90,13 +90,13 @@ model reservas {
   id             Int       @id @default(autoincrement())
   observacion    String?
   clienteId      Int
-  pickupDate     DateTime
+  pickupDate     String
   pickupLocation String
   pickupTime     String
-  returnDate     DateTime
+  returnDate     String
   returnLocation String
   returnTime     String
-  vehiculoId     Int
+  vehiculoId     Int      @unique
   clientes       clientes  @relation(fields: [clienteId], references: [id])
   vehiculos      vehiculos @relation(fields: [vehiculoId], references: [id])
 
