@@ -1,9 +1,11 @@
 "use client"
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const App = () => {
+  const {data: session} = useSession();
   return (
     <div>
       <header>
@@ -12,13 +14,24 @@ const App = () => {
             <img src={"/icon.png"} alt="Logo" className="logo-icon"/>
             RENT<span>CAR</span>
           </div>
-          <ul>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
+          <ul className="align-middle">
+            <li>
+            <Link href={'/about'}><p>Sobre Nosotros</p></Link>
+            </li>
+            <li>
+            <Link href={'/services'}><p>Servicios</p></Link>
+            </li>
             <li><a href="#">Precios</a></li>
             <li><a href="reservas">Vehículos</a></li>
-            <li><a href="#">Contactos</a></li>
-            <li><a href="#">Login</a></li>
+            <li>
+            <Link href={'/contact'}><p>Contactos</p></Link>
+            </li>
+            <li>{session ? (
+              <button className="bg-slate-50 p-3 rounded text-blue-700" onClick={() => signOut()}>Logout</button>
+            ):
+            (
+              <p>Login</p>
+            )}</li>
           </ul>
         </nav>
       </header>

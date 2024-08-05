@@ -1,5 +1,4 @@
 "use client"
-import Link from 'next/link';
 import ReservationForm from '../components/ReservationForm';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -11,7 +10,7 @@ const ReservationPage = ({ params }) => {
     const [vehicleInfo, setVehicleInfo] = useState({}); // Estado para almacenar los datos
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
     
-    const {data: session, status} = useSession();
+    const {data: session} = useSession();
     const userId = session?.user.id;
 
     useEffect(() => {
