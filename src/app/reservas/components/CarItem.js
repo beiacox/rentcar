@@ -17,9 +17,7 @@ const CarItem = ({ car }) => {
                     <li>{car.equipaje}</li>
                     <li>{car.combustible} combustible</li>
                     <ul className='bg-gray-600 text-slate-50 flex flex-col justify-center rounded p-3 my-2'>
-                    <li><strong>Precio/hora: {car.precio_hora}$</strong></li>
                     <li><strong>Precio/dia: {car.precio_dia}$</strong></li>
-                    <li><strong>Precio/mes: {car.precio_mes}$</strong></li>
                     </ul>
                 </ul>
                 <Link href={`/reservas/cars/${car.id}`} >
