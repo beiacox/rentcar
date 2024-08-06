@@ -2,23 +2,26 @@ const { NextResponse } = require("next/server");
 import db from "@/lib/db";
 import bcrypt from "bcrypt";
 
+export async function GET(req){
+  try {
+      const reservas = await db.reservas.findMany();
+      return NextResponse.json({reservas});
+  } catch (error) {
+      console.log(error)
+      return NextResponse.json({error});
+  }
+}
+
 export async function POST(req) {
   try {
     const data = await req.json();
     console.log(data);
-
-
-
-    //se busca si el vehiculo esta en la lista de alquilados
     const CarFound = await db.reservas.findUnique({
       where: {
         vehiculoId: data.vehiculoId,
       },
     });
 
-
-
-    //si el vehiculo ya esta en la lista se cancela la operacion
     if (!!CarFound) {
       return NextResponse.json(
         { message: "el auto ya esta alquilado" },
@@ -27,13 +30,6 @@ export async function POST(req) {
         }
       );
     }
-    const CarPrice = await db.vehiculos.findUnique({
-      where: {
-        id: data.vehiculoId,
-      },
-    });
-
-
 
     //cambiando el estado del vehiculo
     try {
@@ -50,8 +46,6 @@ export async function POST(req) {
       );
     }
 
-
-
     //se calcula el precio en base al rango de fecha alquilado
     function calcularDiferenciaDias() {
       const inicio = new Date(data.pickupDate);
@@ -62,8 +56,6 @@ export async function POST(req) {
 
       return costototal;
     }
-
-
 
     //se crea el objeto de nueva reservas y se insertan los datos
     const newReserva = await db.reservas.create({
@@ -77,12 +69,9 @@ export async function POST(req) {
         vehiculoId: data.vehiculoId,
         clienteId: data.clienteId,
         observacion: data.observacion,
-        costoT: calcularDiferenciaDias(),
       },
     });
 
-
-    
     return NextResponse.json(newReserva);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });

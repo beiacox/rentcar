@@ -1,0 +1,75 @@
+.reservation-form-container {
+    max-width: 450px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(17, 12, 12, 0.678);
+    box-shadow: 0 4px 15px rgba(218, 214, 214, 0.459);
+    border-radius: 12px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #000; /* Asegúrate de que el color sea negro */
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    background-color: white; /* Asegúrate de que esta línea esté presente */
+    color: black; /* Asegúrate de que el texto sea negro */
+}
+
+.form-group input[type="email"], .form-group input[type="password"], .form-group input[type="tel"], .form-group input[type="text"] {
+    background-color: white; /* Asegúrate de que esta línea esté presente */
+    color: black; /* Asegúrate de que el texto sea negro */
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #0f7e0b;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0f7e0b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #02500d;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff; /* Cambia el color a blanco */
+}
+
+input::placeholder, .form-group select option {
+    color: #aaa;
+}
