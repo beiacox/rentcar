@@ -16,12 +16,15 @@ export async function POST(req) {
   try {
     const data = await req.json();
     console.log(data);
+
+    //se busca si el vehiculo esta en la lista de alquilados
     const CarFound = await db.reservas.findUnique({
       where: {
         vehiculoId: data.vehiculoId,
       },
     });
 
+    //si el vehiculo ya esta en la lista se cancela la operacion
     if (!!CarFound) {
       return NextResponse.json(
         { message: "el auto ya esta alquilado" },
@@ -30,6 +33,11 @@ export async function POST(req) {
         }
       );
     }
+    const CarPrice = await db.vehiculos.findUnique({
+      where: {
+        id: data.vehiculoId,
+      },
+    });
 
     //cambiando el estado del vehiculo
     try {
@@ -71,6 +79,7 @@ export async function POST(req) {
         observacion: data.observacion,
       },
     });
+
 
     return NextResponse.json(newReserva);
   } catch (error) {
