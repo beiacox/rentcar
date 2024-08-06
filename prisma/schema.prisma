@@ -97,7 +97,6 @@ model reservas {
   returnLocation String
   returnTime     String
   vehiculoId     Int      @unique
-  costoT         Int
   clientes       clientes  @relation(fields: [clienteId], references: [id])
   vehiculos      vehiculos @relation(fields: [vehiculoId], references: [id])
 

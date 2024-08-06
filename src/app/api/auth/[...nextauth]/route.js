@@ -42,7 +42,6 @@ const AuthOptions = {
     },
     callbacks: {
         async jwt({ token, user }) {
-            console.log(user)
             if (user) {
                 token.role = user.role; // Agrega el rol al token
                 token.id = user.userId;

@@ -2,6 +2,16 @@ const { NextResponse } = require("next/server");
 import db from "@/lib/db";
 import bcrypt from "bcrypt";
 
+export async function GET(req){
+  try {
+      const reservas = await db.reservas.findMany();
+      return NextResponse.json({reservas});
+  } catch (error) {
+      console.log(error)
+      return NextResponse.json({error});
+  }
+}
+
 export async function POST(req) {
   try {
     const data = await req.json();
@@ -67,9 +77,9 @@ export async function POST(req) {
         vehiculoId: data.vehiculoId,
         clienteId: data.clienteId,
         observacion: data.observacion,
-        costoT: calcularDiferenciaDias(),
       },
     });
+
 
     return NextResponse.json(newReserva);
   } catch (error) {
