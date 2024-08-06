@@ -1,35 +1,51 @@
 "use client"
-import { signOut } from "next-auth/react";
+import { signOut, useSession, signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import './components/Home.css';
 
 
 const App = () => {
+  const {data: session} = useSession();
   return (
     <div>
       <header>
         <nav>
           <div className="logo">
-            <img src={"/icon.png"} alt="Logo" className="logo-icon"/>
+            <Image src={"/icon.png"} alt="Logo" className="logo-icon" width={100} height={100}/>
             RENT<span>CAR</span>
           </div>
-          <ul>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Precios</a></li>
-            <li><a href="reservas">Vehículos</a></li>
-            <li><a href="#">Contactos</a></li>
-            <li><a href="#">Login</a></li>
+          <ul className="justify-center items-center">
+            <li>
+            <Link href={'/about'}><p>Sobre Nosotros</p></Link>
+            </li>
+            <li>
+            <Link href={'/services'}><p>Servicios</p></Link>
+            </li>
+            <li>
+            <Link href={'/reservas'}><p>Vehículos</p></Link>
+            </li>
+            <li>
+            <Link href={'/contact'}><p>Contactos</p></Link>
+            </li>
+            <li>{session ? (
+              <button className="bg-slate-50 p-2 rounded text-blue-700" onClick={() => signOut()}>Logout</button>
+            ):
+            (
+              <button className="bg-slate-50 p-2 rounded text-blue-700" onClick={() => signIn()}>Sign in</button>
+            )}</li>
           </ul>
         </nav>
       </header>
-      <section className="hero">
-        <div className="hero-content">
-          <h1>¡Bienvenidos a RentCar Deluxe!</h1>
-          <p className="HeroP">
-            Explora el mundo con estilo y comodidad. Te ofrecemos una amplia gama de vehículos de alta calidad para satisfacer todas tus necesidades de transporte.
-          </p>
-          <button className="bg-slate-50 p-3 rounded text-blue-700" onClick={() => signOut()}>Logout</button>
-          <button>¡Reserva ahora y comienza tu viaje con RentCar Deluxe!</button>
+      <section>
+      <div className="home">
+            <div className="hero">
+                <div className="hero-content flex flex-col">
+                    <h1>¡Bienvenidos a RentCar Deluxe!</h1>
+                    <p><strong>¡Su camino, su elección!</strong></p>
+                    <button>Hacer una Reserva</button>
+                </div>
+            </div>
         </div>
       </section>
     </div>

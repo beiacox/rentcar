@@ -13,6 +13,7 @@ export default function Home() {
                     <ul>
                         <li><Link href="#">Sobre Nosotros</Link></li>
                         <li><Link href="#">Servicios</Link></li>
+                        <li><Link href="/dashboard">Panel de control</Link></li>
                         <li><Link href="#">Contactos</Link></li>
                         <li><Link href="#">Login</Link></li>
                     </ul>

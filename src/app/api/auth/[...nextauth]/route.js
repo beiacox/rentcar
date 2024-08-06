@@ -28,6 +28,7 @@ const AuthOptions = {
                 if (!matchPassword) throw new Error('Wrong password')
                 return {
                     id: UserFound.id,
+                    userId: UserFound.id_cliente,
                     name: UserFound.usuario,
                     email: UserFound.correo,
                     role: UserFound.role
@@ -43,7 +44,7 @@ const AuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.role = user.role; // Agrega el rol al token
-                token.id = user.id;
+                token.id = user.userId;
             }
             return token;
         },

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../components/Services.css';
+import BackButton from '../components/BackButton';
 
 const Services = () => {
         const services = [
@@ -21,7 +22,9 @@ const Services = () => {
     ];
 
     return (
+        <>
         <div className="services">
+        <BackButton />
             <h1>Nuestros Servicios</h1>
             <p>Ofrecemos una gama completa de servicios para satisfacer todas tus necesidades de transporte y mantenimiento de vehículos.</p>
             <div className="service-list">
@@ -34,6 +37,7 @@ const Services = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

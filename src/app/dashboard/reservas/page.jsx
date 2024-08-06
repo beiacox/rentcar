@@ -1,22 +1,33 @@
 "use client"
 
 import Head from "next/head";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css"
 
+
 export default function Reservas() {
+    const [data, setData] = useState({}); // Estado para almacenar los datos
+    const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
+
     const tbodyRef = useRef(null);
     const tableRef = useRef(null);
     const searchInputRef = useRef(null);
     const paginationInfoRef = useRef(null);
     const entriesRef = useRef(null);
-    
+
     useEffect(() => {
+        fetch("http://localhost:3000/api/reservas")
+            .then(d => d.json())
+            .then(d => {
+                setData(d);
+                setLoading(false)
+            });
+
         let rowId = 1;
         let currentPage = 1;
         let rowsPerPage = 10;
         let notificationCount = 0;
-    
+
 
         // function addRow() {
         //     // const table = document.getElementById("data-table").getElementsByTagName("tbody")[0];
@@ -165,7 +176,7 @@ export default function Reservas() {
         // });
     }, [])
     return (
-        <div>
+        <div className="p-3">
             <Head>
                 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
                 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
@@ -173,8 +184,7 @@ export default function Reservas() {
             </Head>
 
             <div className="container">
-                <button className="add-button" onClick={() => console.log("addRow()")}><i className="fas fa-plus"></i></button>
-                <div className="show-entries">
+                <div className="show-entries flex justify-between w-7">
                     <label htmlFor="entries">Mostrar</label>
                     <select id="entries" ref={entriesRef}>
                         <option value="10">10</option>
@@ -201,21 +211,32 @@ export default function Reservas() {
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Garantía</th>
                                 <th>Cliente</th>
-                                <th>Vehículo</th>
-                                <th>Placa</th>
-                                <th>Modelo</th>
-                                <th>Año</th>
-                                <th> Préstamo</th>
-                                <th> Devolución</th>
-                                <th>Cantidad</th>
-                                <th>Monto</th>
+                                <th>Fecha de inicio</th>
+                                <th>localizacion de entrega</th>
+                                <th>Fecha de final</th>
+                                <th>localizacion de devuelta</th>
+                                <th>Vehiculo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody ref={tbodyRef}>
-                            {/* Filas dinámicas */}
+                            {
+                                !loading && data.reservas.map((reserva, index) => (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{reserva.clienteId}</td>
+                                        <td>{reserva.pickupDate}</td>
+                                        <td>{reserva.pickupLocation}</td>
+                                        <td>{reserva.returnDate}</td>
+                                        <td>{reserva.returnLocation}</td>
+                                        <td>{reserva.vehiculoId}</td>
+                                        <td class="actions">
+                                            <button class="edit" >✏️</button>
+                                            <button class="delete">🗑️</button>
+                                        </td>
+                                    </tr>
+                                ))}
                         </tbody>
                     </table>
                     <p ref={paginationInfoRef}>Mostrando registros del 0 al 0 de un total de 0 registros</p>
