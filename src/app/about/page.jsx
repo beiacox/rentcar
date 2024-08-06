@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image';
 import '../components/AboutUs.css';
+import BackButton from '../components/BackButton';
 
 const AboutUs = () => {
     const teamMembers = [
@@ -22,7 +23,9 @@ const AboutUs = () => {
     ];
 
     return (
+        <>
         <div className="about-us">
+        <BackButton />
             <h1><strong>Sobre Nosotros</strong></h1>
             <p>Somos una empresa dedicada a ofrecer el mejor servicio de alquiler de autos.</p>
             <p>Nuestra misión es proporcionar una experiencia de alquiler de autos sin complicaciones y accesible para todos nuestros clientes.</p>
@@ -31,7 +34,7 @@ const AboutUs = () => {
             <h2>Nuestro Equipo</h2>
             <div className="team">
                 {teamMembers.map((member, index) => (
-                    <div className="team-member" key={index}>
+                    <div className="team-member flex flex-col justify-center items-center" key={index}>
                         <Image src={member.image} alt={member.name} className="team-member-image" width={100} height={100}/>
                         <div className="team-member-info">
                             <h3>{member.name}</h3>
@@ -52,6 +55,7 @@ const AboutUs = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

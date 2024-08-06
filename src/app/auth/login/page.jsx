@@ -28,16 +28,18 @@ const Login = () => {
         }
     })
     return (
-        <div className={`${styles.background} flex flex-col items-center justify-center min-h-screen bg-gray-100`}>
+        <div className={`${styles.background} flex flex-col items-center justify-center`}>
             <div className="">
                 <div className={styles.loginWrapper}>
                     <div className={styles.background}></div>
                     <div className={styles.overlay}></div>
-                    <div className={styles.loginContainer}>
-                        <h2>Login</h2>
+                    <div className={`${styles.loginContainer} flex flex-col items-center justify-center`}>
+                        <h2 className='text-4xl'>Iniciar Sesión</h2>
                         <form onSubmit={onSubmit}>
                             {error && (<span className="bg-red-500 text-lg text-white p-3 rounded">{error}</span>)}
                             <div className={styles.inputContainer}>
+                                <label className='text-xl'>Correo Electrónico</label>
+
                                 <input
                                     {...register("email", { required: { value: true, message: "Email is required" } },)}
                                     type="email"
@@ -45,6 +47,8 @@ const Login = () => {
                                 {errors.email && (<span className="text-red-500">{errors.email.message}</span>)}
                             </div>
                             <div className={styles.inputContainer}>
+                            <label className='text-xl'>Contraseña</label>
+
                                 <input
                                     {...register("password", { required: { value: true, message: "Password is required" } },)}
                                     type="password" placeholder="*******" required />
@@ -53,12 +57,18 @@ const Login = () => {
                             </div>
                             <div className={styles.rememberMe}>
                                 <input type="checkbox" id="rememberMe" />
-                                <label htmlFor="rememberMe">Remember me</label>
+                                <label htmlFor="rememberMe">Recordarme</label>
                             </div>
-                            <button type="submit" className={styles.loginButton}>Login</button>
+                            <button type="submit" className={styles.loginButton}>Iniciar Sesión</button>
                         </form>
-                        <a href="#" className={styles.forgotPassword}>Forgot Password?</a>
-                        <a onClick={() => router.push('/auth/signup')} className={styles.register}>Don&apos;t have an account? Register</a>
+                        <div className='flex justify-between items-center space-x-4 mt-4 w-5/6'>
+                        <a href="#" className={`${styles.forgotPassword} text-sm`}>
+                            ¿Olvidaste tu contraseña?
+                            </a>
+                        <a onClick={() => router.push('/auth/signup')} className={`${styles.register} text-sm`}>
+                            ¿No tienes una cuenta? Regístrate
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

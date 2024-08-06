@@ -39,7 +39,7 @@
 }
 
 .loginContainer {
-    width: 100%;
+    width: 30rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -50,9 +50,14 @@
 }
 
 .loginContainer h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: white;
 }
+
+.loginContainer label {
+    color: white;
+}
+
 
 .inputContainer {
     position: relative;
@@ -62,7 +67,7 @@
 }
 
 .inputContainer input {
-    width: 200px;
+    width: 20rem;
     padding: 10px 40px 10px 10px;
     margin: 10px 0;
     border: none;
@@ -78,7 +83,7 @@
 .loginButton {
     width: 100%;
     padding: 10px;
-    background: #556;
+    background: rgb(23, 132, 33);
     color: white;
     border: none;
     border-radius: 5px;
