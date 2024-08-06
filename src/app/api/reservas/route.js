@@ -13,6 +13,7 @@ export async function POST(req) {
         vehiculoId: data.vehiculoId,
       }  
     });
+    
     //si el vehiculo ya esta en la lista se cancela la operacion
     if (!!CarFound) {
       return NextResponse.json(
@@ -28,7 +29,7 @@ export async function POST(req) {
       },
     });
 
-    console.log(CarPrice.precio_dia);
+    
 
     //se calcula el precio en base al rango de fecha alquilado
     function calcularDiferenciaDias() {
@@ -40,6 +41,17 @@ export async function POST(req) {
       const costototal = diferenciaDias * CarPrice.precio_dia;
 
       return costototal;
+    }
+
+    //cambiando el estado del vehiculo 
+    try {
+      const updatedVehicle = await prisma.vehiculos.update({
+        where: { id: data.vehiculoId },
+        data: { estado: 2 },
+      });
+      res.status(200).json(updatedVehicle);
+    } catch (error) {
+      res.status(500).json({ error: "Error updating vehicle status" });
     }
 
     //se crea el objeto de nueva reservas y se insertan los datos 
