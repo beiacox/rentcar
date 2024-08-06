@@ -11,9 +11,9 @@ export async function POST(req) {
     const CarFound = await db.reservas.findUnique({
       where: {
         vehiculoId: data.vehiculoId,
-      }  
+      },
     });
-    
+
     //si el vehiculo ya esta en la lista se cancela la operacion
     if (!!CarFound) {
       return NextResponse.json(
@@ -29,11 +29,23 @@ export async function POST(req) {
       },
     });
 
-    
+    //cambiando el estado del vehiculo
+    try {
+      const updatedVehicle = await db.vehiculos.update({
+        where: { id: data.vehiculoId },
+        data: { estado: 2 },
+      });
+      console.log("Vehicle status updated:", updatedVehicle);
+    } catch (error) {
+      console.error("Error updating vehicle status:", error);
+      return NextResponse.json(
+        { error: "Error updating vehicle status" },
+        { status: 500 }
+      );
+    }
 
     //se calcula el precio en base al rango de fecha alquilado
     function calcularDiferenciaDias() {
-      
       const inicio = new Date(data.pickupDate);
       const fin = new Date(data.returnDate);
       const diferenciaTiempo = fin - inicio;
@@ -43,18 +55,7 @@ export async function POST(req) {
       return costototal;
     }
 
-    //cambiando el estado del vehiculo 
-    try {
-      const updatedVehicle = await prisma.vehiculos.update({
-        where: { id: data.vehiculoId },
-        data: { estado: 2 },
-      });
-      res.status(200).json(updatedVehicle);
-    } catch (error) {
-      res.status(500).json({ error: "Error updating vehicle status" });
-    }
-
-    //se crea el objeto de nueva reservas y se insertan los datos 
+    //se crea el objeto de nueva reservas y se insertan los datos
     const newReserva = await db.reservas.create({
       data: {
         pickupLocation: data.pickupLocation,
@@ -69,7 +70,6 @@ export async function POST(req) {
         costoT: calcularDiferenciaDias(),
       },
     });
-    
 
     return NextResponse.json(newReserva);
   } catch (error) {
