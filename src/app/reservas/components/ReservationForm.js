@@ -2,6 +2,8 @@
 import { useState } from "react";
 import "./ReservationForm.css"; // Asegúrate de crear este archivo para estilos
 
+
+
 const ReservationForm = ({carId, userId}) => {
   const [pickupLocation, setPickupLocation] = useState("");
   const [returnLocation, setReturnLocation] = useState("");
@@ -13,14 +15,16 @@ const ReservationForm = ({carId, userId}) => {
   const [clienteId, setIdCliente] = useState("");
   const [observacion, setObservacion] = useState("");
   console.log({carId, userId})
-
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //const Date = new Date();
 
     const reservationData = {
       pickupLocation,
       returnLocation,
-      pickupDate, //Date.parse(pickupDate),
+      pickupDate,
       returnDate,
       pickupTime,
       returnTime,
@@ -28,7 +32,7 @@ const ReservationForm = ({carId, userId}) => {
       clienteId: parseInt(userId),
       observacion,
     };
-
+    
     const res = await fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(reservationData),
