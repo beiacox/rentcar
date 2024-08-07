@@ -1,8 +1,6 @@
-body {
+body:has(.reservasContainer) {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('/images/yopo.jpg');
+    background-image: url('/carrr.jpg');
      /* Ruta correcta a la imagen en public/images */
     background-size: cover;
     background-position: center;
@@ -10,7 +8,7 @@ body {
     background-attachment: fixed;
 }
 
-header {
+.reservasContainer header {
     display: flex;
     align-items: center;
     background-color: rgba(49, 47, 47, 0.8); /* Fondo blanco semitransparente */
@@ -23,27 +21,26 @@ header {
     height: 50px;
 }
 
-nav ul {
+.reservasContainer nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
 }
 
-nav li {
+.reservasContainer nav li {
     margin-left: 20px;
 }
 
-nav a {
+.reservasContainer nav a {
     text-decoration: none;
     color: #f7f4f4;
     font-weight: bold;
 }
 
-main {
+.reservasContainer main {
     display: flex;
     justify-content: center;
-    margin: 20px;
     background-color: rgba(0, 0, 0, 0.8); /* Fondo blanco semitransparente */
     padding: 20px;
     border-radius: 10px;

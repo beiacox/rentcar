@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 
 
 export const metadata = {
@@ -12,7 +13,6 @@ export default function dashboardLayout({ children }) {
             <Head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
             </Head>
-            
             <div className="nav">
                 <div className="menu">
                     <button id="reservas-btn">Reservas</button>
@@ -25,8 +25,9 @@ export default function dashboardLayout({ children }) {
                     <span>user</span>
                 </div>
             </div>
+            <Script src="https://cdn.jsdelivr.net/npm/chart.js"></Script>
             <div>{children}</div>
-            <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         </>
     );
 }

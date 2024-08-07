@@ -4,11 +4,13 @@ import Link from 'next/link';
 import CarList from './components/CarList';
 import './components/App.css';
 
-export default function Home() {
+export default function Reservas() {
     return (
-        <div className="App">
+        <div className="reservasContainer">
             <header>
-                <Image src="/logo.png" alt="Deluxe Rent Car" className="logo" width={30} height={30} />
+                <Link href={'/'}>
+                    <Image priority src="/logo.png" alt="Deluxe Rent Car" className="logo" width={50} height={50} />
+                </Link>
                 <nav>
                     <ul>
                         <li><Link href="#">Sobre Nosotros</Link></li>

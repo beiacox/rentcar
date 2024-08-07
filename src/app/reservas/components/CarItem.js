@@ -6,7 +6,7 @@ const CarItem = ({ car }) => {
 
     return (
         <article className="car-item">
-            <Image className='img' src={`/images/toyota-yaris.jpg`} alt={car.modelo} width={500} height={100}/>
+            <Image priority className='img' src={car.foto} alt={car.modelo} width={500} height={100}/>
             <div className="car-details">
                 <h2>{car.tipo}</h2>
                 <p>{car.modelo}</p>

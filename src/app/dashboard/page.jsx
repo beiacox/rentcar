@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import './styles.css'
 import Link from 'next/link';
 import withAuth from '@/lib/auth'
+import Script from 'next/script';
 
 function About() {
     const canvasMesRef = useRef(null);
@@ -70,6 +71,7 @@ function About() {
 
 
     return (
+        <>
         <div>
             <div class="container">
                 <h1>Panel de Administración</h1>
@@ -112,6 +114,7 @@ function About() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

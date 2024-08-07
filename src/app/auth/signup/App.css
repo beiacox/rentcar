@@ -1,7 +1,5 @@
-body {
+body:has(.background) {
     font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;

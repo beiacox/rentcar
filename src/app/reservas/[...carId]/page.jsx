@@ -3,6 +3,7 @@ import ReservationForm from '../components/ReservationForm';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
+import BackButton from '@/app/components/BackButton';
 
 const ReservationPage = ({ params }) => {
     const carId = params.carId[1];
@@ -24,6 +25,7 @@ const ReservationPage = ({ params }) => {
     }, [carId])
     return (
         <div className="container mx-auto p-4">
+            <BackButton />
             {!loading && (
                 <>
                     <div className="bg-white shadow-md rounded-lg p-6 mb-6">

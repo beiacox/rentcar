@@ -3,6 +3,7 @@
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import "./styles.css"
+import CarModal from "../../components/CarModal";
 
 
 export default function Reservas() {
@@ -195,6 +196,7 @@ export default function Reservas() {
                     </select>
                     <label htmlFor="entries">registros</label>
                 </div>
+
 
                 <div className="search-container">
                     <input type="text" id="search" ref={searchInputRef} placeholder="Buscar..." />
