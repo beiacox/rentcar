@@ -26,7 +26,6 @@ export async function POST(request) {
             placa: formData.get('placa'),
             kilometraje: 'prueba',
             id_marca: parseInt(formData.get('marca')),
-            precio_dia: 0.0,
             precio_mes: 0.0,
         },
     });

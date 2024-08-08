@@ -38,7 +38,7 @@ export default function CarModal() {
         formData.append('transmision', data.transmision);
         formData.append('equipaje', data.equipaje);
         formData.append('combustible', data.combustible);
-        formData.append('precio_dia', data.precioDia);
+        formData.append('precio_dia', data.precio_dia);
         formData.append('placa', data.placa);
         formData.append('marca', data.marca);
 
