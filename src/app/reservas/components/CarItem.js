@@ -11,11 +11,11 @@ const CarItem = ({ car }) => {
                 <h2>{car.tipo}</h2>
                 <p>{car.modelo}</p>
                 <ul>
-                    <li>{car.doors} puertas</li>
-                    <li>{car.asientos} pasajeros</li>
-                    <li>{car.transmision}</li>
-                    <li>{car.equipaje}</li>
-                    <li>{car.combustible} combustible</li>
+                <li><strong>Puertas:</strong> {car.doors}</li>
+                        <li><strong>Pasajeros:</strong> {car.asientos}</li>
+                        <li><strong>Transmisión:</strong> {car.transmision}</li>
+                        <li><strong>Equipaje:</strong> {car.equipaje}</li>
+                        <li><strong>Combustible:</strong> {car.combustible}</li>
                     <ul className='bg-gray-600 text-slate-50 flex flex-col justify-center rounded p-3 my-2'>
                     <li><strong>Precio/hora: {car.precio_hora}$</strong></li>
                     <li><strong>Precio/dia: {car.precio_dia}$</strong></li>

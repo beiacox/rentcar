@@ -9,14 +9,22 @@ export default function Customers() {
     const [data, setData] = useState({}); // Estado para almacenar los datos
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
 
+<<<<<<< HEAD
     useEffect(() => {
         fetch("http://localhost:3000/api/vehicles")
+=======
+    const fetchData = () => {
+        fetch("/api/vehicles")
+>>>>>>> 5aa595b (Borrar reservas y mejoras)
         .then(d => d.json())
         .then(d => {
             setData(d);
             setLoading(false)
         });
-    
+    }
+
+    useEffect(() => {
+        fetchData()
     }, [])
     
     const router = useRouter();
@@ -34,7 +42,7 @@ export default function Customers() {
             <div className="py-8">
                 <div className="overflow-x-auto">
                     <div className="min-w-full shadow rounded-lg overflow-hidden">
-                    <CarModal />
+                    <CarModal recargar={fetchData}/>
 
                         <table className="min-w-full leading-normal">
                             <thead>

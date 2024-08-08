@@ -86,3 +86,53 @@ export async function POST(req) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
+
+
+
+export async function DELETE(req) {
+  try {
+    const data = await req.json();
+    console.log(data);
+
+    //se busca si el vehiculo esta en la lista de alquilados
+    const reserva = await db.reservas.findUnique({
+      where: {
+        vehiculoId: data.id,
+      },
+    });
+
+    //si el vehiculo ya esta en la lista se cancela la operacion
+    if (!!reserva) {
+      return NextResponse.json(
+        { alert: "La reserva no existe" },
+        {
+          status: 400,
+        }
+      );
+      
+    }
+  
+    //cambiando el estado del vehiculo
+    try {
+      await db.reservas.delete({
+        where: { id: data.id },
+      });
+
+      await db.vehiculos.update({
+        where: { id: data.vehiculoId },
+        data: { estado: 1 },
+      });
+      console.log("Vehicle deleted");
+    } catch (error) {
+      console.error("Error updating vehicle status:", error);
+      return NextResponse.json(
+        { error: "Error updating vehicle status" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({"Vehicle deleted": deletedVehicle});
+  } catch (error) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}
