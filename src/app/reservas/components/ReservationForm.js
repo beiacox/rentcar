@@ -31,7 +31,7 @@ const ReservationForm = ({carId, userId}) => {
     const reservationData = {
       pickupLocation,
       returnLocation,
-      pickupDate, //Date.parse(pickupDate),
+      pickupDate,
       returnDate,
       pickupTime,
       returnTime,

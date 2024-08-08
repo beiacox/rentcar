@@ -9,7 +9,7 @@ export default function Customers() {
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/customers")
+        fetch("/api/customers")
         .then(d => d.json())
         .then(d => {
             setData(d);
