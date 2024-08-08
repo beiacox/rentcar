@@ -19,9 +19,13 @@ export default function dashboardLayout({ children }) {
                     <Link href={'/'}>
                     <button id="reservas-btn">Home</button>
                     </Link>
+                    <Link href={'/reservas'}>
                     <button id="reservas-btn">Reservas</button>
+                    </Link>
                     <button id="estadisticas-btn">Estadísticas</button>
+                    <Link href={'/customers'}>
                     <button id="clientes-btn">Clientes</button>
+                    </Link>
                 </div>
                 <div className="profile">
                     <i className="fas fa-bell" id="campana-btn"></i>
