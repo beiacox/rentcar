@@ -1,6 +1,6 @@
 const { NextResponse } = require("next/server");
 import db from "@/lib/db";
-import bcrypt from "bcrypt";
+
 
 export async function GET(req){
   try {
@@ -26,12 +26,14 @@ export async function POST(req) {
 
     //si el vehiculo ya esta en la lista se cancela la operacion
     if (!!CarFound) {
+      window.alert("El auto ya esta reservado");
       return NextResponse.json(
-        { message: "el auto ya esta alquilado" },
+        { alert: "el auto ya esta reservado" },
         {
           status: 400,
         }
       );
+      
     }
     const CarPrice = await db.vehiculos.findUnique({
       where: {
@@ -43,7 +45,7 @@ export async function POST(req) {
     try {
       const updatedVehicle = await db.vehiculos.update({
         where: { id: data.vehiculoId },
-        data: { estado: 2 },
+        data: { estado: 0 },
       });
       console.log("Vehicle status updated:", updatedVehicle);
     } catch (error) {
@@ -77,6 +79,7 @@ export async function POST(req) {
         vehiculoId: data.vehiculoId,
         clienteId: data.clienteId,
         observacion: data.observacion,
+        costoT: "$USD "+calcularDiferenciaDias(),
       },
     });
 
