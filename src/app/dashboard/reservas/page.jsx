@@ -23,7 +23,7 @@ export default function Reservas() {
     };
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/reservas")
+        fetch("/api/reservas")
             .then(d => d.json())
             .then(d => {
                 setData(d);

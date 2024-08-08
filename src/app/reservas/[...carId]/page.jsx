@@ -15,7 +15,7 @@ const ReservationPage = ({ params }) => {
     const userId = session?.user.id;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/vehicles/${carId}`)
+        fetch(`/api/vehicles/${carId}`)
             .then(d => d.json())
             .then(d => {
                 setVehicleInfo(d);
