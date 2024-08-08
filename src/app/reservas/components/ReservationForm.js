@@ -31,12 +31,12 @@ const ReservationForm = ({carId, userId}) => {
     const reservationData = {
       pickupLocation,
       returnLocation,
-      pickupDate, //Date.parse(pickupDate),
+      pickupDate,
       returnDate,
       pickupTime,
       returnTime,
-      vehiculoId: parseInt(carId),
-      clienteId: parseInt(userId),
+      vehiculoId: carId,
+      clienteId: userId,
       observacion,
     };
 
@@ -128,9 +128,10 @@ const ReservationForm = ({carId, userId}) => {
           className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">Vehículo</label>
+      <div hidden className="flex flex-col">
+        <label hidden className="mb-2 font-semibold text-gray-700">Vehículo</label>
         <input
+          hidden
           type="text"
           value={vehiculoId}
           onChange={(e) => setIdVehiculo(carId)}
@@ -138,9 +139,10 @@ const ReservationForm = ({carId, userId}) => {
           className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       </div>
-      <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">Cliente</label>
-        <input
+      <div hidden className="flex flex-col">
+        <label hidden className="mb-2 font-semibold text-gray-700">Cliente</label>
+        <input 
+          hidden
           type="text"
           value={clienteId}
           onChange={(e) => setIdCliente(userId)}
