@@ -3,7 +3,7 @@
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import "./styles.css"
-import CarModal from "../../components/CarModal";
+import { useRouter } from "next/navigation";
 
 
 export default function Reservas() {
@@ -15,6 +15,12 @@ export default function Reservas() {
     const searchInputRef = useRef(null);
     const paginationInfoRef = useRef(null);
     const entriesRef = useRef(null);
+
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.back();
+    };
 
     useEffect(() => {
         fetch("http://localhost:3000/api/reservas")
@@ -28,7 +34,6 @@ export default function Reservas() {
         let currentPage = 1;
         let rowsPerPage = 10;
         let notificationCount = 0;
-
 
         // function addRow() {
         //     // const table = document.getElementById("data-table").getElementsByTagName("tbody")[0];
@@ -178,6 +183,9 @@ export default function Reservas() {
     }, [])
     return (
         <div className="p-3">
+            <button onClick={handleBack} className="text-blue-500 underline">
+                ← Regresar
+            </button>
             <Head>
                 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
                 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>

@@ -21,7 +21,7 @@ export default function Reservas() {
                     </ul>
                 </nav>
             </header>
-            <main>
+            <main className='items-center h-screen'>
                 <CarList />
             </main>
         </div>

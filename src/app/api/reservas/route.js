@@ -31,10 +31,39 @@ export async function POST(req) {
         }
       );
     }
+    const CarPrice = await db.vehiculos.findUnique({
+      where: {
+        id: data.vehiculoId,
+      },
+    });
 
-    
+    //cambiando el estado del vehiculo
+    try {
+      const updatedVehicle = await db.vehiculos.update({
+        where: { id: data.vehiculoId },
+        data: { estado: 0 },
+      });
+      console.log("Vehicle status updated:", updatedVehicle);
+    } catch (error) {
+      console.error("Error updating vehicle status:", error);
+      return NextResponse.json(
+        { error: "Error updating vehicle status" },
+        { status: 500 }
+      );
+    }
 
-    // const hashedPass = await bcrypt.hash(data.vehiculoId, 10);
+    //se calcula el precio en base al rango de fecha alquilado
+    function calcularDiferenciaDias() {
+      const inicio = new Date(data.pickupDate);
+      const fin = new Date(data.returnDate);
+      const diferenciaTiempo = fin - inicio;
+      const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 3600 * 24));
+      const costototal = diferenciaDias * CarPrice.precio_dia;
+
+      return costototal;
+    }
+
+    //se crea el objeto de nueva reservas y se insertan los datos
     const newReserva = await db.reservas.create({
       data: {
         pickupLocation: data.pickupLocation,

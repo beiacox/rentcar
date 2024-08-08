@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {Provider} from './Providers'
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
         <Provider>
         {children}
         </Provider>
+        <Script src="https://cdn.jsdelivr.net/npm/chart.js"></Script>
         </body>
     </html>
   );

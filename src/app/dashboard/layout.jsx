@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import Script from "next/script";
 
 
@@ -15,6 +16,9 @@ export default function dashboardLayout({ children }) {
             </Head>
             <div className="nav">
                 <div className="menu">
+                    <Link href={'/'}>
+                    <button id="reservas-btn">Home</button>
+                    </Link>
                     <button id="reservas-btn">Reservas</button>
                     <button id="estadisticas-btn">Estadísticas</button>
                     <button id="clientes-btn">Clientes</button>
@@ -25,9 +29,7 @@ export default function dashboardLayout({ children }) {
                     <span>user</span>
                 </div>
             </div>
-            <Script src="https://cdn.jsdelivr.net/npm/chart.js"></Script>
             <div>{children}</div>
-
         </>
     );
 }
