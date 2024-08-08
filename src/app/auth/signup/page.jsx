@@ -2,10 +2,31 @@
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form';
 import "./App.css";
+import { useState } from 'react';
 
 export default function SignupPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter()
+
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const formatPhoneNumber = (e) => {
+    // Eliminar todo lo que no sea un dígito
+    const cleaned = e.target.value.replace(/\D/g, '');
+
+    let formattedNumber = '';
+  
+    // Aplicar formato según el número de dígitos ingresados
+    if (cleaned.length <= 3) {
+      formattedNumber = cleaned;
+    } else if (cleaned.length <= 6) {
+      formattedNumber = `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    } else {
+      formattedNumber = `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+    }
+  
+    setPhoneNumber(formattedNumber);
+  };
 
   const onSubmit = handleSubmit(async (data) => {
 
@@ -85,8 +106,10 @@ export default function SignupPage() {
             <div className="form-group mb-3">
               <input
                 {...register("tel", { required: { value: true, message: "Telephone is required" } },)}
-
+                maxLength={12}
                 type="tel"
+                value={phoneNumber}
+                onChange={formatPhoneNumber}
                 className="form-control"
                 placeholder="Ingresa tu teléfono"
                 required

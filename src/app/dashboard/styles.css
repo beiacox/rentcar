@@ -36,7 +36,7 @@
     cursor: pointer;
 }
 
-.container {
+.dashboard-container {
     width: 90%;
     margin: 20px auto;
     padding: 20px;
@@ -45,12 +45,12 @@
     border-radius: 10px;
 }
 
-.container h1 {
+.dashboard-container h1 {
     color: #333;
     margin-bottom: 10px;
 }
 
-.container p {
+.dashboard-container p {
     color: #666;
 }
 

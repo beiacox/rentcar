@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Notification from '../components/Notification'
 
-export default function CarModal() {
+export default function CarModal({recargar}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -49,6 +49,7 @@ export default function CarModal() {
 
         const response = await res.json();
         setImageUrl(response.filePath);
+        recargar();
 
         const timer = setTimeout(() => {
             closeModal();
@@ -155,6 +156,21 @@ export default function CarModal() {
                             </div>
                             <div className="mb-4">
                                 <label className="block text-gray-700">Transmisión:</label>
+                                <select
+                                    {...register("transmision")}
+                                    name="transmision"
+                                    id="transmision"
+                                    value={transmision}
+                                    onChange={(e) => setTransmision(e.target.value)}
+                                    className="block w-full p-2 border rounded"
+                                >
+                                    <option value="automatica">Automatica</option>
+                                    <option value="mecanica">Mecanica</option>
+                                    <option value="secuencial">Secuencial</option>
+                                </select>
+                            </div>
+                            {/* <div className="mb-4">
+                                <label className="block text-gray-700">Transmisión:</label>
                                 <input
                                     {...register("transmision", { required: { value: true, message: "Transmisión is required" } })}
                                     type="text"
@@ -164,7 +180,7 @@ export default function CarModal() {
                                     onChange={(e) => setTransmision(e.target.value)}
                                 />
                                 {errors.transmision && <span className="text-red-500">{errors.transmision.message}</span>}
-                            </div>
+                            </div> */}
                             <div className="mb-4">
                                 <label className="block text-gray-700">Equipaje:</label>
                                 <input
@@ -172,12 +188,28 @@ export default function CarModal() {
                                     type="text"
                                     name="equipaje"
                                     className="w-full p-2 border rounded"
+                                    placeholder='2 maletas'
                                     value={equipaje}
                                     onChange={(e) => setEquipaje(e.target.value)}
                                 />
                                 {errors.equipaje && <span className="text-red-500">{errors.equipaje.message}</span>}
                             </div>
                             <div className="mb-4">
+                                <label className="block text-gray-700">Combustible:</label>
+                                <select
+                                    {...register("combustible")}
+                                    name="combustible"
+                                    id="combustible"
+                                    value={combustible}
+                                    onChange={(e) => setCombustible(e.target.value)}
+                                    className="block w-full p-2 border rounded"
+                                >
+                                    <option value="gasolina">Gasolina</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="electrico">Electríco</option>
+                                </select>
+                            </div>
+                            {/* <div className="mb-4">
                                 <label className="block text-gray-700">Combustible:</label>
                                 <input
                                     {...register("combustible", { required: { value: true, message: "Combustible is required" } })}
@@ -188,7 +220,7 @@ export default function CarModal() {
                                     onChange={(e) => setCombustible(e.target.value)}
                                 />
                                 {errors.combustible && <span className="text-red-500">{errors.combustible.message}</span>}
-                            </div>
+                            </div> */}
                             <div className="mb-4">
                                 <label className="block text-gray-700">Precio por día:</label>
                                 <input

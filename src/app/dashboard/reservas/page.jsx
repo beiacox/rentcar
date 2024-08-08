@@ -22,6 +22,18 @@ export default function Reservas() {
         router.back();
     };
 
+    const handleDelete = async (reserva) => {
+        const res = await fetch("/api/reservas", {
+            method: "DELETE",
+            body: JSON.stringify(reserva),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          });
+      
+          console.log(await res.json())
+    }
+
     useEffect(() => {
         fetch("/api/reservas")
             .then(d => d.json())
@@ -243,7 +255,7 @@ export default function Reservas() {
                                         <td>{reserva.vehiculoId}</td>
                                         <td class="actions">
                                             <button class="edit" >✏️</button>
-                                            <button class="delete">🗑️</button>
+                                            <button onClick={() => handleDelete(reserva)} class="delete">🗑️</button>
                                         </td>
                                     </tr>
                                 ))}

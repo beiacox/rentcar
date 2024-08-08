@@ -7,6 +7,7 @@ import withAuth from '@/lib/auth'
 import Script from 'next/script';
 
 function About() {
+
     const canvasMesRef = useRef(null);
     const canvasSemanaRef = useRef(null);
 
@@ -73,42 +74,43 @@ function About() {
     return (
         <>
         <div>
-            <div class="container">
-                <h1>Panel de Administración</h1>
-                <p>Reportes.</p>
+            <div class="dashboard-container">
+                <h1 className='text-2xl'>Panel de Administración</h1>
+                <p className='pb-5 text-xl'>Reportes</p>
+                <hr/>
                 <div class="card-container">
                     <div class="card card-usuarios">
                         <i class="fas fa-user"></i>
-                        <h2>Reservas</h2>
-                        <div class="badge">1</div>
+                        <h2 className='text-xl'>Reservas</h2>
+                        <div class="badge">0</div>
                         <Link href="/dashboard/reservas">Ver detalle</Link>
                     </div>
                     <div class="card card-clientes">
                         <i class="fas fa-users"></i>
-                        <h2>Clientes</h2>
-                        <div class="badge">1</div>
+                        <h2 className='text-xl'>Clientes</h2>
+                        <div class="badge">0</div>
                         <Link href="/dashboard/customers">Ver detalle</Link>
                     </div>
                     <div class="card card-vehiculos">
                         <i class="fas fa-car"></i>
-                        <h2>Vehículos</h2>
+                        <h2 className='text-xl'>Vehículos</h2>
                         <div class="badge">0</div>
                         <Link href="/dashboard/vehicles">Ver detalle</Link>
                     </div>
                     <div class="card card-tipos">
                         <i class="fas fa-tags"></i>
-                        <h2>Marcas</h2>
-                        <div class="badge">8</div>
+                        <h2 className='text-xl'>Marcas</h2>
+                        <div class="badge">0</div>
                         <a href="#">Ver detalle</a>
                     </div>
                 </div>
                 <div class="chart-container">
-                    <div class="chart">
-                        <h2>Rentas Por Mes</h2>
+                    <div class="chart flex flex-col justify-center items-center">
+                        <h2 className='text-xl'>Rentas Por Mes</h2>
                         <canvas ref={canvasMesRef} id="rentasPorMes"></canvas>
                     </div>
-                    <div class="chart">
-                        <h2>Rentas Por Semana</h2>
+                    <div class="chart flex flex-col justify-center items-center">
+                        <h2 className='text-xl'>Rentas Por Semana</h2>
                         <canvas ref={canvasSemanaRef} id="rentasPorSemana"></canvas>
                     </div>
                 </div>

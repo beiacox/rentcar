@@ -17,7 +17,7 @@ const CarList = () => {
     
     }, [])
     return (
-        <section className="car-list">
+        <section className="car-list flex gap-2">
             {!loading ? data.vehicles.map(car => (
                 <CarItem key={car.id} car={car} />
             ))
