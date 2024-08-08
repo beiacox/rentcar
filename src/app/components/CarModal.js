@@ -1,10 +1,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Notification from '../components/Notification'
 
 export default function CarModal() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const [message, setMessage] = useState('');
 
     const [isOpen, setIsOpen] = useState(false);
     const [file, setFile] = useState(null);
@@ -46,6 +49,14 @@ export default function CarModal() {
 
         const response = await res.json();
         setImageUrl(response.filePath);
+
+        const timer = setTimeout(() => {
+            closeModal();
+            setMessage('¡Operación exitosa!');
+
+        }, 3000);
+
+        return () => clearTimeout(timer);
     });
 
     const openModal = () => setIsOpen(true);
@@ -54,8 +65,10 @@ export default function CarModal() {
     return (
         <div>
             <button onClick={openModal} className="bg-blue-500 text-white p-2 rounded">
-                Open Modal
+                Registrar vehiculo
             </button>
+            <Notification message={message} />
+
 
             {isOpen && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">

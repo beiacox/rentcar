@@ -1,8 +1,12 @@
 "use client"
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import "./ReservationForm.css"; // Asegúrate de crear este archivo para estilos
+import Notification from "@/app/components/Notification";
 
 const ReservationForm = ({carId, userId}) => {
+  const [message, setMessage] = useState('');
+
   const [pickupLocation, setPickupLocation] = useState("");
   const [returnLocation, setReturnLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
@@ -12,7 +16,14 @@ const ReservationForm = ({carId, userId}) => {
   const [vehiculoId, setIdVehiculo] = useState("");
   const [clienteId, setIdCliente] = useState("");
   const [observacion, setObservacion] = useState("");
-  console.log({carId, userId})
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,11 +49,21 @@ const ReservationForm = ({carId, userId}) => {
     });
 
     console.log(await res.json())
+    setMessage('¡Operación exitosa!');
 
-    
+    setIsDisabled(true);
+
+    // Habilitar el botón después de 3 segundos
+    setTimeout(() => {
+      setIsDisabled(false);
+      handleBack();
+    }, 3000);
+
   };
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <>
+      <Notification message={message} />
+    <form onSubmit={handleSubmit} className="space-y-4 reservationForm">
       <div className="flex flex-col">
         <label className="mb-2 font-semibold text-gray-700">Entrega</label>
         <input
@@ -138,11 +159,13 @@ const ReservationForm = ({carId, userId}) => {
       </div>
       <button
         type="submit"
-        className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        disabled={isDisabled}
+        className="w-full disabled:bg-gray-400 disabled:cursor-not-allowed px-4 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
       >
         Reservar
       </button>
     </form>
+    </>
   );
 };
 

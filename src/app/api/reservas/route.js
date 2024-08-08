@@ -43,7 +43,7 @@ export async function POST(req) {
     try {
       const updatedVehicle = await db.vehiculos.update({
         where: { id: data.vehiculoId },
-        data: { estado: 2 },
+        data: { estado: 0 },
       });
       console.log("Vehicle status updated:", updatedVehicle);
     } catch (error) {

@@ -79,9 +79,9 @@ function About() {
                 <div class="card-container">
                     <div class="card card-usuarios">
                         <i class="fas fa-user"></i>
-                        <h2>Usuarios</h2>
+                        <h2>Reservas</h2>
                         <div class="badge">1</div>
-                        <Link href="/dashboard/users">Ver detalle</Link>
+                        <Link href="/dashboard/reservas">Ver detalle</Link>
                     </div>
                     <div class="card card-clientes">
                         <i class="fas fa-users"></i>
@@ -97,7 +97,7 @@ function About() {
                     </div>
                     <div class="card card-tipos">
                         <i class="fas fa-tags"></i>
-                        <h2>Tipos</h2>
+                        <h2>Marcas</h2>
                         <div class="badge">8</div>
                         <a href="#">Ver detalle</a>
                     </div>
