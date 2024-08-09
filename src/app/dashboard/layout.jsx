@@ -19,11 +19,10 @@ export default function dashboardLayout({ children }) {
                     <Link href={'/'}>
                     <button id="reservas-btn">Home</button>
                     </Link>
-                    <Link href={'/reservas'}>
+                    <Link href={'/dashboard/reservas'}>
                     <button id="reservas-btn">Reservas</button>
                     </Link>
-                    <button id="estadisticas-btn">Estadísticas</button>
-                    <Link href={'/customers'}>
+                    <Link href={'/dashboard/customers'}>
                     <button id="clientes-btn">Clientes</button>
                     </Link>
                 </div>
