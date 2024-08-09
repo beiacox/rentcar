@@ -49,7 +49,7 @@ const ReservationForm = ({carId, userId}) => {
     });
 
     console.log(await res.json())
-    setMessage('¡Operación exitosa!');
+    setMessage('¡Reserva realizada exitosamente!');
 
     setIsDisabled(true);
 

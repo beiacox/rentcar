@@ -43,7 +43,7 @@ const App = () => {
                 <div className="hero-content flex flex-col">
                     <h1>¡Bienvenidos a RentCar Deluxe!</h1>
                     <p><strong>¡Su camino, su elección!</strong></p>
-                    <button>Hacer una Reserva</button>
+                    <Link href={'/reservas'}><button>Hacer una Reserva</button></Link>
                 </div>
             </div>
         </div>
